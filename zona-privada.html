@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <title>Zona Privada | Beach Club</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/zona-privada.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <script src="js/auth.js"></script>
+</head>
+
+<body class="private-page" style="display: none;">
+    <!-- Header inyectado dinámicamente por header.js -->
+
+    <main class="private-section">
+        <div class="container">
+            <h1>🔐 Zona Privada</h1>
+            <p class="intro-text">Bienvenido al área exclusiva de Beach Club</p>
+
+            <div class="private-grid">
+                <a href="calculadora.html" class="private-card">
+                    <div class="card-icon">🧮</div>
+                    <h3>Calculadora</h3>
+                    <p>Gestiona pedidos y genera facturas</p>
+                </a>
+
+                <a href="lista-compra.html" class="private-card">
+                    <div class="card-icon">🛒</div>
+                    <h3>Lista de Compra</h3>
+                    <p>Administra inventario y compras</p>
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Beach Club. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/header.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <title>Beach Club | Menú</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="menu-page">
+    <!-- Header inyectado dinámicamente por header.js -->
+
+    <main class="menu-section">
+        <div class="container">
+            <h2>Nuestra Carta</h2>
+            <div class="menu-grid">
+                <!-- Top Left: Bebidas sin Alcohol -->
+                <div class="menu-category drinks-nonalcohol animate-in">
+                    <h3>Bebidas sin Alcohol</h3>
+                    <ul>
+                        <li><span class="item-name">Oráculo Rosa</span> <span class="item-price">40€</span></li>
+                        <li><span class="item-name">Amanecer Dorado</span> <span class="item-price">40€</span></li>
+                        <li><span class="item-name">Océano Místico</span> <span class="item-price">40€</span></li>
+                        <li><span class="item-name">Bruma Lunar</span> <span class="item-price">40€</span></li>
+                        <li><span class="item-name">Marea Serena</span> <span class="item-price">40€</span></li>
+                    </ul>
+                </div>
+
+                <!-- Top Right: Bebidas con Alcohol -->
+                <div class="menu-category drinks-alcohol animate-in" style="animation-delay: 0.1s;">
+                    <h3>Bebidas con Alcohol</h3>
+                    <ul>
+                        <li><span class="item-name">Tarot Tonic</span> <span class="item-price">60€</span></li>
+                        <li><span class="item-name">El Arcano</span> <span class="item-price">60€</span></li>
+                        <li><span class="item-name">Estrella de Mar</span> <span class="item-price">60€</span></li>
+                        <li><span class="item-name">Luna Llena</span> <span class="item-price">60€</span></li>
+                    </ul>
+                </div>
+
+                <!-- Bottom Left: Snacks -->
+                <div class="menu-category snacks animate-in" style="animation-delay: 0.2s;">
+                    <h3>Snacks</h3>
+                    <ul>
+                        <li><span class="item-name">Dátiles Encantados</span> <span class="item-price">40€</span></li>
+                        <li><span class="item-name">La Tosta del Oráculo</span> <span class="item-price">40€</span></li>
+                        <li><span class="item-name">Tempura de Sirena</span> <span class="item-price">40€</span></li>
+                        <li><span class="item-name">Tartar de Salmón</span> <span class="item-price">40€</span></li>
+                    </ul>
+                </div>
+
+                <!-- Bottom Right: Weed-Land Collaboration -->
+                <div class="menu-category collab-offer animate-in" style="animation-delay: 0.3s;">
+                    <h3>Weed-Land</h3>
+                    <div class="collab-logos">
+                        <img src="assets/logo.png" alt="Beach Club Logo">
+                        <p class="collab-text">en colaboración con</p>
+                        <img src="assets/weedland-logo.png" alt="Weed-Land Logo">
+                    </div>
+                    <ul class="collab-items">
+                        <li><span class="item-name">Bong</span> <span class="item-price">50€</span></li>
+                    </ul>
+                    <p class="disclaimer">*Para mayores de 18 años. Consumo responsable.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Beach Club. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/header.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,88 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Efecto de "Giro" en las tarjetas de actividades
+    const cards = document.querySelectorAll('.activity-card');
+
+    cards.forEach(card => {
+        card.addEventListener('click', function () {
+            // Si la tarjeta ya tiene la clase 'flipped', se la quita, si no, se la pone
+            this.classList.toggle('flipped');
+        });
+    });
+
+    // 2. Animación de aparición al hacer Scroll (Intersection Observer)
+    const observerOptions = {
+        threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+            }
+        });
+    }, observerOptions);
+
+    // Seleccionamos elementos para animar
+    document.querySelectorAll('.menu-category, .about-item, .activity-card').forEach(el => {
+        observer.observe(el);
+    });
+
+    // 3. Transición suave y sutil al cambiar de página - Header fijo
+    const navLinks = document.querySelectorAll('nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const destination = link.href;
+            if (destination.includes('.html')) {
+                e.preventDefault();
+                const main = document.querySelector('main');
+                const footer = document.querySelector('footer');
+
+                if (main) {
+                    main.style.opacity = '0';
+                    main.style.transform = 'translateY(-10px)';
+                    main.style.transition = 'opacity 0.4s ease-out, transform 0.4s ease-out';
+                }
+                if (footer) {
+                    footer.style.opacity = '0';
+                    footer.style.transition = 'opacity 0.4s ease-out';
+                }
+
+                setTimeout(() => {
+                    window.location.href = destination;
+                }, 400);
+            }
+        });
+    });
+
+    // 4. Actualizar el año del footer automáticamente
+    const yearSpan = document.getElementById('current-year');
+    if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+    }
+
+    // 5. Actualizar botón de autenticación dinámicamente
+    const authButton = document.getElementById('auth-button');
+    if (authButton) {
+        const isAuth = localStorage.getItem('beachclub_auth') === 'true';
+        const currentPage = window.location.pathname;
+
+        // Solo mostrar "Cerrar Sesión" en páginas privadas
+        const isPrivatePage = currentPage.includes('calculadora.html') ||
+            currentPage.includes('lista-compra.html') ||
+            currentPage.includes('zona-privada.html');
+
+        if (isAuth && isPrivatePage) {
+            authButton.textContent = '🔓 Cerrar Sesión';
+            authButton.href = '#';
+            authButton.onclick = function (e) {
+                e.preventDefault();
+                if (typeof logout === 'function') {
+                    logout();
+                } else {
+                    localStorage.removeItem('beachclub_auth');
+                    window.location.href = 'index.html';
+                }
+            };
+        }
+    }
+});

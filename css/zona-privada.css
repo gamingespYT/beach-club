@@ -1,0 +1,161 @@
+/* Zona Privada Styles */
+.private-page {
+    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+    min-height: 100vh;
+}
+
+.private-section {
+    padding: 80px 0;
+    min-height: calc(100vh - 80px - 90px);
+}
+
+.private-section h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3.5em;
+    color: var(--light-text);
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    margin-bottom: 20px;
+    animation: slideInDown 1s ease-out;
+}
+
+.intro-text {
+    text-align: center;
+    font-size: 1.3em;
+    margin-bottom: 60px;
+    color: #1a1a1a;
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+}
+
+.private-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.private-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--dark-text);
+    transition: all 0.4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-top: 8px solid var(--accent-color);
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.private-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    border-top-color: var(--primary-color);
+}
+
+.card-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.private-card h3 {
+    font-family: 'Pacifico', cursive;
+    color: var(--primary-color);
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.private-card p {
+    color: #666;
+    font-size: 1.1em;
+    line-height: 1.5;
+}
+
+/* Logout button */
+.logout-btn {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+}
+
+.logout-btn:hover {
+    transform: translateY(-50%) translateY(-2px) scale(1.05);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .private-section h1 {
+        font-size: 2.5em;
+    }
+
+    .private-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .logout-btn {
+        position: relative;
+        right: auto;
+        top: auto;
+        transform: none;
+        width: 100%;
+        margin: 15px 0;
+    }
+
+    .logout-btn:hover {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

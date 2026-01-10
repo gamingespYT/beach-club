@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <title>404 - Página No Encontrada | Beach Club</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="error-page">
+    <!-- Header inyectado dinámicamente por header.js -->
+
+    <main class="error-section">
+        <div class="error-content">
+            <div class="error-number">404</div>
+            <h1>¡Ups! Te has perdido en el mar</h1>
+            <p>Parece que esta página se fue de vacaciones y no volvió.</p>
+            <p class="error-subtext">La página que buscas no existe o ha sido movida.</p>
+            <div class="error-actions">
+                <a href="index.html" class="cta-button">Volver al Inicio</a>
+                <a href="actividades.html" class="cta-button secondary">Ver Actividades</a>
+            </div>
+        </div>
+        <div class="hero-bubbles">
+            <span></span><span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span><span></span>
+        </div>
+        <div class="wave-animation">
+            <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                <defs>
+                    <path id="gentle-wave"
+                        d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                </defs>
+                <g class="parallax">
+                    <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,127,80,0.7)" />
+                    <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(135,206,235,0.5)" />
+                    <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,215,0,0.3)" />
+                    <use xlink:href="#gentle-wave" x="48" y="7" fill="rgba(255,255,255,0.8)" />
+                </g>
+            </svg>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year">2023</span> Beach Club. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/header.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beach Club - Lista de Compra</title>
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/lista-compra.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+    rel="stylesheet">
+  <script src="js/auth.js"></script>
+</head>
+
+<body class="shopping-list-page" style="display: none;">
+  <!-- Header inyectado dinámicamente por header.js -->
+
+  <main class="shopping-main">
+    <div class="shopping-container">
+      <h1>🛒 Lista de Compras - Beach Club</h1>
+
+      <div class="layout">
+        <section class="column">
+          <h2>🧺 Ingredientes</h2>
+          <div id="ingredients"></div>
+        </section>
+
+        <section class="column">
+          <h2>🍹 Packs de Productos</h2>
+          <div id="packs"></div>
+        </section>
+
+        <section class="column">
+          <h2>🧾 Lista de Compra</h2>
+          <div id="cart" class="cart">Añade ingredientes o packs para generar la lista...</div>
+          <div id="total" class="total">Total: 0€</div>
+          <div class="buttons">
+            <button onclick="generateCode()">🔗 Generar Código</button>
+            <button onclick="openLoadDialog()">🛜 Cargar Lista</button>
+            <button onclick="resetCart()">🔄 Reset</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="current-year"></span> Beach Club. Todos los derechos reservados.</p>
+  </footer>
+
+  <div id="notification" class="notification"></div>
+
+  <!-- Diálogo para cargar código -->
+  <div id="loadDialog" class="dialog-overlay">
+    <div class="dialog">
+      <h2>📥 Cargar Lista desde Código</h2>
+      <p>Pega el código que te han compartido:</p>
+      <textarea id="codeInput" placeholder="Pega el código aquí..."></textarea>
+      <div class="dialog-buttons">
+        <button onclick="loadFromCode()" class="primary-btn">✅ Cargar</button>
+        <button onclick="closeLoadDialog()" class="secondary-btn">❌ Cancelar</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/header.js"></script>
+  <script src="js/lista-compra.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    // Update auth button on page load
+    window.addEventListener('DOMContentLoaded', function () {
+      const authButton = document.getElementById('auth-button');
+      const isAuth = localStorage.getItem('beachclub_auth') === 'true';
+      if (isAuth && authButton) {
+        authButton.textContent = '🔓 Cerrar Sesión';
+        authButton.onclick = function (e) {
+          e.preventDefault();
+          logout();
+        };
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/logo.png" type="image/png">
+    <title>Beach Club | Actividades</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Pacifico&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="activities-page">
+    <!-- Header inyectado dinámicamente por header.js -->
+
+    <main class="activities-section">
+        <div class="container">
+            <h2>Nuestras Experiencias Inolvidables</h2>
+            <p class="intro-text">Sumérgete en la aventura o relájate con nuestras actividades exclusivas.</p>
+
+            <div class="activity-grid">
+
+                <div class="activity-card" data-activity="motos">
+                    <div class="card-front">
+                        <img src="assets/moto-agua.jpg" alt="Motos de Agua">
+                        <h3>Motos de Agua</h3>
+                        <p>Haz clic para ver más</p>
+                    </div>
+                    <div class="card-back">
+                        <h4>Alquiler de Motos de Agua</h4>
+                        <ul>
+                            <li>15 Minutos - 200€</li>
+                            <li>30 Minutos - 250€</li>
+                            <li>1 Hora - 300€</li>
+                            <li><strong>Alquiler Todo el Día - 1500€</strong></li>
+                        </ul>
+                        <button class="back-button">Volver</button>
+                    </div>
+                </div>
+
+                <div class="activity-card" data-activity="tarot">
+                    <div class="card-front">
+                        <img src="assets/tarot.jpg" alt="Lectura de Tarot">
+                        <h3>Lectura de Tarot</h3>
+                        <p>Haz clic para ver más</p>
+                    </div>
+                    <div class="card-back">
+                        <h4>Lectura de Tarot Místico</h4>
+                        <p>Acércate y pregunta con cita previa o todos los sábados a las 23:00h.</p>
+                        <p>Nuestros expertos te guiarán a través de los misterios del futuro.</p>
+                        <span class="instagram-handle">@BEACHCLUB</span>
+                        <button class="back-button">Volver</button>
+                    </div>
+                </div>
+
+                <div class="activity-card" data-activity="tenis">
+                    <div class="card-front">
+                        <img src="assets/tennis.jpg" alt="Pista de Tenis">
+                        <h3>Pista de Tenis</h3>
+                        <p>Haz clic para ver más</p>
+                    </div>
+                    <div class="card-back">
+                        <h4>Pista de Tenis Exclusiva</h4>
+                        <p>Juega al tenis con vistas al mar en nuestras modernas instalaciones.</p>
+                        <ul>
+                            <li>Bono Mensual: 5000€ (Acceso total con cita previa)</li>
+                            <li>Uso Puntual: Tú VS Tu Amigo/a - 500€</li>
+                        </ul>
+                        <button class="back-button">Volver</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="current-year"></span> Beach Club. Todos los derechos reservados.</p>
+    </footer>
+
+    <script src="js/header.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
