@@ -68,14 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Reconfigurar event listeners al cambiar tamaño de ventana
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                location.reload(); // Recargar para aplicar el comportamiento correcto
-            }, 250);
-        });
     });
 
     // 2. Animación de aparición al hacer Scroll (Intersection Observer)
