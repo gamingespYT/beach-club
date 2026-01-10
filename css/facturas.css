@@ -1,24 +1,46 @@
 /* Invoice-specific styles only - no global resets */
+html,
+.invoice-page {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
 .invoice-page,
 .invoice-main,
 .invoice-container {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
-.invoice-container * {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/* Beach Club Invoice Page Styling */
-.invoice-page {
+/* Pseudo-element for fixed background */
+.invoice-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: linear-gradient(135deg, #87CEEB 0%, #FF7F50 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.invoice-page {
   min-height: 100vh;
+  min-height: 100dvh;
+  /* For mobile browsers */
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 1;
 }
 
 .invoice-main {
   padding: 20px 0 40px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .invoice-container {

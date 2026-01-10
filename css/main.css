@@ -133,6 +133,45 @@ nav ul li a.active {
     box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
 }
 
+/* Hamburger Menu */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 25px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 1002;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(11px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-11px) rotate(-45deg);
+}
+
+/* Prevent body scroll when menu is open */
+body.menu-open {
+    overflow: hidden;
+}
+
 
 /* CTA Button */
 .cta-button {
@@ -585,6 +624,7 @@ footer {
     margin-bottom: 20px;
     gap: 15px;
     text-align: center;
+    vertical-align: middle;
 }
 
 .collab-logos img {
@@ -735,10 +775,10 @@ footer {
     transform: rotateY(180deg);
     background: white;
     color: var(--dark-text);
-    justify-content: space-between;
-    padding: 40px 30px;
+    padding: 25px 20px 20px 20px;
     text-align: center;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    overflow-y: auto;
 }
 
 /* Animaciones de entrada (Fade In Up) */
@@ -788,14 +828,14 @@ footer {
 .card-back h4 {
     color: var(--primary-color);
     font-family: 'Pacifico', cursive;
-    font-size: 1.8em;
-    margin-bottom: 20px;
-    margin-top: 0;
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    margin-top: auto;
 }
 
 .card-back ul {
     list-style: none;
-    margin: 20px 0;
+    margin: 10px 0;
     padding: 0;
 }
 
@@ -810,12 +850,13 @@ footer {
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
     border: none;
-    padding: 12px 25px;
+    padding: 10px 22px;
     border-radius: 25px;
     cursor: pointer;
     font-weight: 600;
-    font-size: 1em;
-    margin-top: 20px;
+    font-size: 0.95em;
+    margin-top: auto;
+    /* Alinea el botón al fondo */
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 127, 80, 0.3);
     font-family: 'Montserrat', sans-serif;
@@ -1047,7 +1088,313 @@ header {
 }
 
 /* Responsive adjustments for 404 */
-@media (max-width: 768px) {
+/* =============================================
+   RESPONSIVE DESIGN - MEDIA QUERIES
+   ============================================= */
+
+/* Tablet (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+
+    /* Header */
+    nav .logo img {
+        height: 60px;
+    }
+
+    nav ul li {
+        margin-left: 20px;
+    }
+
+    nav ul li a {
+        font-size: 1em;
+    }
+
+
+    /* Hero Section */
+    .hero-section h1 {
+        font-size: 3em;
+    }
+
+    .hero-section p {
+        font-size: 1.3em;
+    }
+
+    /* About Grid - 2 columns */
+    .about-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    /* Menu Grid - 2 columns */
+    .menu-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+
+    /* Activity Cards - 2 columns */
+    .activity-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+}
+
+/* =========================================
+   HEADER SPECIFIC BREAKPOINT (up to 1520px)
+   Solo afecta al menú para mostrar hamburguesa
+   ========================================= */
+@media (max-width: 1520px) {
+
+    /* Header Padding */
+    header {
+        padding: 10px 0;
+    }
+
+    nav {
+        padding: 0 15px;
+    }
+
+    /* Ajustar logo */
+    nav .logo img {
+        height: 50px;
+    }
+
+    /* Mostrar hamburguesa */
+    .hamburger {
+        display: flex;
+    }
+
+    /* Ocultar menú desktop y mostrar sidebar móvil */
+    nav ul {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 300px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        padding: 80px 30px 30px;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+        transition: right 0.3s ease;
+        z-index: 1001;
+    }
+
+    nav ul.active {
+        right: 0;
+    }
+
+    nav ul li {
+        margin: 0;
+        width: 100%;
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul li:last-child {
+        border-bottom: none;
+    }
+
+    nav ul li a {
+        font-size: 1.2em;
+        display: block;
+        padding: 5px 0;
+    }
+
+    /* Login button ajustado para no chocar */
+    .login-button {
+        padding: 8px 15px;
+        font-size: 0.9em;
+        right: 80px;
+        /* Separado de la hamburguesa */
+    }
+}
+
+/* Mobile (< 768px) - Ajustes adicionales solo para móvil */
+@media (max-width: 767px) {
+
+
+    /* ===== HERO SECTION ===== */
+    .hero-section {
+        padding: 60px 20px;
+        min-height: 70vh;
+    }
+
+    .hero-section h1 {
+        font-size: 2.5em;
+        margin-bottom: 15px;
+    }
+
+    .hero-section p {
+        font-size: 1.1em;
+        margin-bottom: 25px;
+    }
+
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 1em;
+        width: 90%;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    /* Reduce bubble effects on mobile */
+    .hero-bubbles span {
+        display: none;
+    }
+
+    .hero-bubbles span:nth-child(1),
+    .hero-bubbles span:nth-child(3),
+    .hero-bubbles span:nth-child(5) {
+        display: block;
+    }
+
+    /* ===== ABOUT SECTION ===== */
+    .about-section {
+        padding: 40px 20px;
+    }
+
+    .about-section h2 {
+        font-size: 2.2em;
+        margin-bottom: 20px;
+    }
+
+    .about-section>p {
+        font-size: 1em;
+        margin-bottom: 30px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .about-item {
+        padding: 25px;
+    }
+
+    .about-item h3 {
+        font-size: 1.5em;
+    }
+
+    .about-item p {
+        font-size: 0.95em;
+    }
+
+    /* ===== MENU SECTION ===== */
+    .menu-section {
+        padding: 40px 15px;
+    }
+
+    .menu-section h2 {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+    }
+
+    .menu-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .menu-category {
+        padding: 25px;
+    }
+
+    .menu-category h3 {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+
+    .menu-category ul li {
+        font-size: 1em;
+        padding: 10px 0;
+    }
+
+    .item-name {
+        font-size: 1em;
+    }
+
+    .item-price {
+        font-size: 1.1em;
+    }
+
+    /* Collab logos en mobile - mantener horizontal y centrados */
+    .collab-logos {
+        flex-direction: row;
+        gap: 15px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .collab-logos img {
+        height: 45px;
+        max-width: none;
+    }
+
+    .collab-text {
+        font-size: 0.85em;
+        margin: 0 5px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    /* ===== ACTIVITY SECTION ===== */
+    .activity-section {
+        padding: 40px 15px;
+    }
+
+    .activity-section h2 {
+        font-size: 2.2em;
+        margin-bottom: 30px;
+    }
+
+    .activity-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .activity-card {
+        height: 400px;
+    }
+
+    .card-front h3 {
+        font-size: 1.8em;
+    }
+
+    .card-back h4 {
+        font-size: 1.5em;
+    }
+
+    .card-back p,
+    .card-back li {
+        font-size: 0.95em;
+    }
+
+    /* ===== GLOBAL TYPOGRAPHY ===== */
+    h1 {
+        font-size: 2.5em;
+    }
+
+    h2 {
+        font-size: 2em;
+    }
+
+    h3 {
+        font-size: 1.6em;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+        padding: 20px 15px;
+        font-size: 0.9em;
+    }
+
+    /* ===== ERROR PAGE ===== */
     .error-number {
         font-size: 8em;
     }
@@ -1068,5 +1415,35 @@ header {
     .error-actions .cta-button {
         width: 80%;
         max-width: 300px;
+    }
+}
+
+/* Extra Small Mobile (< 480px) */
+@media (max-width: 479px) {
+    .hero-section h1 {
+        font-size: 2em;
+    }
+
+    .about-section h2,
+    .menu-section h2,
+    .activity-section h2 {
+        font-size: 1.8em;
+    }
+
+    nav ul {
+        width: 90%;
+    }
+
+    .login-button {
+        font-size: 0.8em;
+        padding: 6px 12px;
+    }
+
+    .menu-category {
+        padding: 20px;
+    }
+
+    .activity-card {
+        height: 350px;
     }
 }

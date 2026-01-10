@@ -21,7 +21,12 @@
     <div class="logo">
       <img src="assets/logo.png" alt="Beach Club Logo">
     </div>
-    <ul>
+    <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul id="nav-menu">
       <li><a href="index.html"${activePage === 'index' ? ' class="active"' : ''}>Inicio</a></li>
       <li><a href="menu.html"${activePage === 'menu' ? ' class="active"' : ''}>Menú</a></li>
       <li><a href="actividades.html"${activePage === 'actividades' ? ' class="active"' : ''}>Actividades</a></li>
@@ -45,6 +50,9 @@
 
             // Actualizar botón de auth después de un pequeño delay
             setTimeout(updateAuthButton, 0);
+
+            // Configurar hamburger menu
+            setupHamburgerMenu();
         }
     }
 
@@ -85,7 +93,30 @@
                     localStorage.removeItem('beachclub_auth');
                     window.location.href = 'index.html';
                 }
-            };
+            }
+        };
+    }
+
+    function setupHamburgerMenu() {
+        const hamburger = document.getElementById('hamburger-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', function () {
+                hamburger.classList.toggle('active');
+                navMenu.classList.toggle('active');
+                document.body.classList.toggle('menu-open');
+            });
+
+            // Cerrar menú al hacer click en un enlace
+            const navLinks = navMenu.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                });
+            });
         }
     }
 })();
