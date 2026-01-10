@@ -19,7 +19,9 @@
   <a href="zona-privada.html" class="login-button" id="auth-button">🔐 Login</a>
   <nav>
     <div class="logo">
-      <img src="assets/logo.png" alt="Beach Club Logo">
+      <a href="index.html">
+        <img src="assets/logo.png" alt="Beach Club Logo">
+      </a>
     </div>
     <button class="hamburger" id="hamburger-menu" aria-label="Menu">
       <span></span>
