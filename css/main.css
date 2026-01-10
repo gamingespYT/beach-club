@@ -1178,12 +1178,15 @@ header {
         align-items: flex-start;
         padding: 80px 30px 30px;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease;
+        transition: right 0.3s ease, visibility 0.3s ease;
         z-index: 1001;
+        visibility: hidden;
+        /* Ocultar totalmente para evitar scroll horizontal */
     }
 
     nav ul.active {
         right: 0;
+        visibility: visible;
     }
 
     nav ul li {
