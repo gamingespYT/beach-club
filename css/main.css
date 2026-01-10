@@ -1167,7 +1167,10 @@ header {
     nav ul {
         position: fixed;
         top: 0;
-        right: -100%;
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
         height: 100vh;
         width: 80%;
         max-width: 300px;
@@ -1178,15 +1181,21 @@ header {
         align-items: flex-start;
         padding: 80px 30px 30px;
         box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-        transition: right 0.3s ease, visibility 0.3s ease;
         z-index: 1001;
+        /* Animación con visibility delayed */
+        display: flex;
+        /* Asegurar que sea flex para el layout */
         visibility: hidden;
-        /* Ocultar totalmente para evitar scroll horizontal */
+        transform: translateX(100%);
+        transition: transform 0.3s ease, visibility 0s linear 0.3s;
+        /* Visibility cambia al FINAL de la transición */
     }
 
     nav ul.active {
-        right: 0;
         visibility: visible;
+        transform: translateX(0);
+        transition: transform 0.3s ease, visibility 0s linear 0s;
+        /* Visibility cambia INMEDIATAMENTE al abrir */
     }
 
     nav ul li {
