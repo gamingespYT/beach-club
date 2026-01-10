@@ -6,15 +6,9 @@ function getInvoiceData() {
 
   // Si hay código de factura (parámetro `codigo`), usarlo directamente
   if (invoiceCode) {
-    // Compatibilidad: soportar formato antiguo (Base64) y nuevo (v2 compact)
     try {
-      if (invoiceCode.startsWith('v2:')) {
-        const compact = decodeURIComponent(invoiceCode.slice(3));
-        return parseCompactInvoice(compact);
-      }
-
-      const decodedData = JSON.parse(decodeURIComponent(atob(invoiceCode)));
-      return decodedData;
+      const compact = decodeURIComponent(invoiceCode);
+      return parseCompactInvoice(compact);
     } catch (error) {
       console.error('Error al decodificar código de factura:', error);
       document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-family: Arial;"><h1>❌ Error</h1><p>Código de factura inválido</p><button onclick="window.close()" style="margin-top: 20px; padding: 10px 20px; cursor: pointer;">Cerrar</button></div>';
@@ -28,14 +22,9 @@ function getInvoiceData() {
   }
 
   try {
-    // Compatibilidad: si viene en formato v2 (compact), parsear manualmente
-    if (encodedData && encodedData.startsWith('v2:')) {
-      const compact = decodeURIComponent(encodedData.slice(3));
-      return parseCompactInvoice(compact);
-    }
-
-    const decodedData = JSON.parse(decodeURIComponent(atob(encodedData)));
-    return decodedData;
+    // Parsear código compacto directamente
+    const compact = decodeURIComponent(encodedData);
+    return parseCompactInvoice(compact);
   } catch (error) {
     console.error('Error al decodificar datos:', error);
     document.body.innerHTML = '<div style="text-align: center; padding: 50px; font-family: Arial;"><h1>❌ Error</h1><p>Datos de factura inválidos</p><button onclick="window.close()" style="margin-top: 20px; padding: 10px 20px; cursor: pointer;">Cerrar</button></div>';
@@ -113,18 +102,7 @@ const PRODUCT_MAP = {
   'TS': 'Tempura de Sirena',
   'SA': 'Tartar de Salmón',
   // Weed-Land - 50€
-  'BG': 'Bong',
-  // Legacy Tropical products
-  'DS': "Diva's Secret",
-  'CR': 'Choco Rumba',
-  'SB': 'Sky Beeze',
-  'DM': 'Dark Moon',
-  'MT': 'Mai Tai',
-  'MWS': 'Mini Wrap de Salmon',
-  'LT': 'Langostinos Tempura',
-  'BT': 'Bocadillo Tropical',
-  'SP': 'Sunset Punch',
-  'PP': 'Pack Poli'
+  'BG': 'Bong'
 };
 
 // Búsqueda inversa: nombre -> id (si existe)
@@ -135,7 +113,7 @@ function findProductIdByName(name) {
   return null;
 }
 
-// Construir el compact v2 desde un objeto de datos (para copia siempre en formato nuevo)
+// Construir el código compacto desde un objeto de datos
 function buildCompactInvoice(data) {
   const dateMs = Date.parse(data.date) || Date.now();
   let dType = 'n';
@@ -148,7 +126,7 @@ function buildCompactInvoice(data) {
   const customPercent = data.customDiscountPercent || 0;
   const customReason = data.customDiscountReason || '';
   const compact = [dateMs, data.name || '', data.surname || '', data.phone || '', data.total || 0, data.discount || 0, dType, data.finalTotal || 0, data.invoiceNumber || '', customPercent, encodeURIComponent(customReason), itemsStr].join('|');
-  return 'v2:' + encodeURIComponent(compact);
+  return encodeURIComponent(compact);
 }
 
 // Mostrar interfaz de búsqueda
@@ -285,6 +263,8 @@ function showSearchInterface() {
         color: #2c3e50;
         margin: 0;
         font-size: 1.2rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
       }
       .clear-btn {
         padding: 8px 16px;
@@ -429,7 +409,7 @@ function displayRecentInvoices() {
   // Obtener todas las facturas del localStorage
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key.startsWith('invoice_')) {
+    if (key.startsWith('beach_invoice_')) {
       try {
         const raw = localStorage.getItem(key);
         const invoice = JSON.parse(raw);
@@ -481,8 +461,9 @@ function displayRecentInvoices() {
 }
 
 // Borrar una factura individual
-function deleteInvoice(storageKey) {
-  if (!confirm('¿Estás seguro de que quieres eliminar esta factura?')) {
+async function deleteInvoice(storageKey) {
+  const confirmed = await customConfirm('¿Estás seguro de que quieres eliminar esta factura?');
+  if (!confirmed) {
     return;
   }
 
@@ -507,15 +488,16 @@ function deleteInvoice(storageKey) {
 }
 
 // Borrar todas las facturas
-function clearAllInvoices() {
-  if (!confirm('¿Estás seguro de que quieres borrar todas las facturas guardadas? Esta acción no se puede deshacer.')) {
+async function clearAllInvoices() {
+  const confirmed = await customConfirm('¿Estás seguro de que quieres borrar todas las facturas guardadas? Esta acción no se puede deshacer.');
+  if (!confirmed) {
     return;
   }
 
   const keysToDelete = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key.startsWith('invoice_')) {
+    if (key.startsWith('beach_invoice_')) {
       keysToDelete.push(key);
     }
   }
@@ -546,17 +528,9 @@ function searchInvoice(event) {
   const invoiceCode = document.getElementById('invoice-search').value.trim();
   const resultDiv = document.getElementById('search-result');
 
-  // Aceptar formato v2 (compact) o formato legacy (Base64)
+  // Intentar parsear el código
   try {
-    if (invoiceCode.startsWith('v2:')) {
-      window.location.href = `?data=${invoiceCode}&from=search`;
-      return;
-    }
-
-    // Intentar decodificar el código legacy (Base64)
-    JSON.parse(decodeURIComponent(atob(invoiceCode)));
-    // Si es válido, redirigir usando el parámetro `codigo` (legacy)
-    window.location.href = `?codigo=${encodeURIComponent(invoiceCode)}`;
+    window.location.href = `?data=${invoiceCode}&from=search`;
   } catch (error) {
     resultDiv.className = 'search-result error';
     resultDiv.textContent = '❌ Código de factura inválido. Verifica que hayas copiado el código completo.';
@@ -610,7 +584,7 @@ function populateInvoice() {
   const invoiceCode = buildCompactInvoice(data);
 
   // Verificar si la factura ya está guardada
-  const isAlreadySaved = localStorage.getItem(`invoice_${invoiceNumber}`) !== null;
+  const isAlreadySaved = localStorage.getItem(`beach_invoice_${invoiceNumber}`) !== null;
 
   // Determinar si viene de la calculadora o de búsqueda
   const urlParams = new URLSearchParams(window.location.search);
@@ -627,7 +601,7 @@ function populateInvoice() {
     try {
       // Añadir código compacto v2 dentro del objeto guardado para facilitar compartir/migración
       try { data.compactCode = buildCompactInvoice(data); } catch (e) { data.compactCode = null; }
-      localStorage.setItem(`invoice_${invoiceNumber}`, JSON.stringify(data));
+      localStorage.setItem(`beach_invoice_${invoiceNumber}`, JSON.stringify(data));
     } catch (error) {
       console.error('Error al guardar factura automáticamente:', error);
     }
@@ -717,7 +691,7 @@ function saveInvoiceManually() {
     // Asegurar que guardamos también el código compacto v2 dentro del objeto
     try { window.currentInvoiceData.compactCode = buildCompactInvoice(window.currentInvoiceData); } catch (e) { window.currentInvoiceData.compactCode = null; }
     // Guardar en localStorage
-    localStorage.setItem(`invoice_${window.currentInvoiceNumber}`, JSON.stringify(window.currentInvoiceData));
+    localStorage.setItem(`beach_invoice_${window.currentInvoiceNumber}`, JSON.stringify(window.currentInvoiceData));
 
     // Ocultar el botón de guardar
     const saveBtn = document.getElementById('save-btn');

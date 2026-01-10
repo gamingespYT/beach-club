@@ -400,7 +400,7 @@ function generateInvoice(event) {
   const customPercent = invoiceData.customDiscountPercent || 0;
   const customReason = invoiceData.customDiscountReason || '';
   const compact = [dateMs, invoiceData.name || '', invoiceData.surname || '', invoiceData.phone || '', invoiceData.total || 0, invoiceData.discount || 0, dType, invoiceData.finalTotal || 0, invoiceData.invoiceNumber || '', customPercent, customReason, itemsStr].join('|');
-  const encodedData = 'v2:' + encodeURIComponent(compact);
+  const encodedData = encodeURIComponent(compact);
 
   // Generar URL de la factura
   const invoiceURL = `${window.location.origin}${window.location.pathname.replace('calculadora.html', 'facturas.html')}?data=${encodedData}`;

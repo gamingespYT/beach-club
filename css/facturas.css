@@ -31,6 +31,12 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
 }
 
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
 
 .logo-section {
   display: flex;
@@ -39,15 +45,16 @@
 }
 
 .main-logo {
-  width: 80px;
-  height: 80px;
-  margin-bottom: 10px;
+  width: 85px;
+  height: 85px;
+  margin-bottom: 5px;
 }
 
 .logo-section h1 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: #2c3e50;
-  margin-bottom: 5px;
+  margin: 0;
+  font-family: 'Pacifico', cursive;
 }
 
 .subtitle {
@@ -60,22 +67,23 @@
 }
 
 .invoice-info h2 {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: #f8b500;
-  margin-bottom: 10px;
+  margin: 0 0 5px 0;
+  font-family: 'Pacifico', cursive;
 }
 
 .invoice-info p {
   color: #555;
-  margin: 5px 0;
-  font-size: 0.95rem;
+  margin: 2px 0;
+  font-size: 0.9rem;
 }
 
 /* Divider */
 .divider {
   height: 2px;
   background: linear-gradient(90deg, #f8b500, #ff6f61);
-  margin: 25px 0;
+  margin: 15px 0;
 }
 
 /* Customer Info */
