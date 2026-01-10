@@ -1,11 +1,80 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Efecto de "Giro" en las tarjetas de actividades
+    // 1. Efecto de "Giro" en las tarjetas de actividades con comportamiento responsive
     const cards = document.querySelectorAll('.activity-card');
 
+    // Detectar si es dispositivo móvil/tablet
+    function isMobileDevice() {
+        return window.innerWidth < 1024;
+    }
+
     cards.forEach(card => {
-        card.addEventListener('click', function () {
-            // Si la tarjeta ya tiene la clase 'flipped', se la quita, si no, se la pone
-            this.classList.toggle('flipped');
+        let isLocked = false; // Estado de bloqueo para desktop
+
+        // Función para voltear la tarjeta
+        function flipCard() {
+            card.classList.add('flipped');
+        }
+
+        // Función para devolver la tarjeta
+        function unflipCard() {
+            card.classList.remove('flipped', 'locked');
+            isLocked = false;
+        }
+
+        // Botón Volver
+        const backButton = card.querySelector('.back-button');
+        if (backButton) {
+            backButton.addEventListener('click', function (e) {
+                e.stopPropagation();
+                unflipCard();
+            });
+        }
+
+        // Comportamiento según dispositivo
+        if (isMobileDevice()) {
+            // MÓVIL/TABLET: Solo click para voltear
+            card.addEventListener('click', function (e) {
+                if (!e.target.classList.contains('back-button')) {
+                    if (!card.classList.contains('flipped')) {
+                        flipCard();
+                    }
+                }
+            });
+        } else {
+            // DESKTOP: Hover temporal, click para bloquear
+
+            // Hover: voltear temporalmente
+            card.addEventListener('mouseenter', function () {
+                if (!isLocked) {
+                    flipCard();
+                }
+            });
+
+            // Mouse sale: volver solo si NO está bloqueada
+            card.addEventListener('mouseleave', function () {
+                if (!isLocked) {
+                    unflipCard();
+                }
+            });
+
+            // Click: bloquear en estado volteado
+            card.addEventListener('click', function (e) {
+                if (!e.target.classList.contains('back-button')) {
+                    if (card.classList.contains('flipped') && !isLocked) {
+                        isLocked = true;
+                        card.classList.add('locked');
+                    }
+                }
+            });
+        }
+
+        // Reconfigurar event listeners al cambiar tamaño de ventana
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                location.reload(); // Recargar para aplicar el comportamiento correcto
+            }, 250);
         });
     });
 

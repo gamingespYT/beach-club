@@ -664,9 +664,8 @@ footer {
 }
 
 .activity-card {
-    background: var(--bg-light);
+    background: transparent;
     border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     cursor: pointer;
     position: relative;
@@ -676,8 +675,12 @@ footer {
     /* Bounce effect */
 }
 
-.activity-card.flipped {
+.activity-card.flipped .card-front {
     transform: rotateY(180deg);
+}
+
+.activity-card.flipped .card-back {
+    transform: rotateY(0deg);
 }
 
 .card-front,
@@ -693,11 +696,13 @@ footer {
     padding: 30px;
     border-radius: 15px;
     color: var(--dark-text);
+    transition: transform 0.8s ease-in-out;
 }
 
 .card-front {
     z-index: 2;
-    background: linear-gradient(to top, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 .card-front img {
@@ -707,6 +712,7 @@ footer {
     border-radius: 10px;
     margin-bottom: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    pointer-events: none;
 }
 
 .card-front h3 {
@@ -728,12 +734,12 @@ footer {
 
 .card-back {
     transform: rotateY(180deg);
-    background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
-    color: var(--light-text);
-    justify-content: flex-start;
-    padding-top: 50px;
+    background: white;
+    color: var(--dark-text);
+    justify-content: space-between;
+    padding: 40px 30px;
     text-align: center;
-    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Animaciones de entrada (Fade In Up) */
@@ -781,35 +787,87 @@ footer {
 
 /* Estilo de la página de Actividades (Card Back) */
 .card-back h4 {
-    color: var(--accent-color);
+    color: var(--primary-color);
     font-family: 'Pacifico', cursive;
     font-size: 1.8em;
+    margin-bottom: 20px;
+    margin-top: 0;
 }
 
 .card-back ul {
     list-style: none;
     margin: 20px 0;
+    padding: 0;
 }
 
 .card-back li {
     margin: 10px 0;
-    font-size: 1.1em;
+    font-size: 1.05em;
+    color: #555;
+    font-weight: 500;
 }
 
 .back-button {
-    background: white;
-    color: var(--primary-color);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: white;
     border: none;
-    padding: 10px 20px;
-    border-radius: 20px;
+    padding: 12px 25px;
+    border-radius: 25px;
     cursor: pointer;
-    font-weight: bold;
-    margin-top: 15px;
-    transition: transform 0.2s;
+    font-weight: 600;
+    font-size: 1em;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 127, 80, 0.3);
+    font-family: 'Montserrat', sans-serif;
 }
 
 .back-button:hover {
-    transform: scale(1.1);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 127, 80, 0.4);
+}
+
+/* Estilos adicionales para card-back */
+.card-back p {
+    font-size: 1em;
+    color: #666;
+    line-height: 1.6;
+    margin: 10px 0;
+    font-weight: 400;
+}
+
+.card-back .instagram-handle {
+    display: inline-block;
+    background: linear-gradient(135deg, #E1306C, #F56040, #FCAF45);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.95em;
+    margin: 15px 0;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 0 3px 10px rgba(225, 48, 108, 0.3);
+}
+
+/* Desktop: Ocultar botón Volver hasta que esté bloqueada */
+@media (min-width: 1024px) {
+    .activity-card:not(.locked) .back-button {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .activity-card.locked .back-button {
+        opacity: 1;
+        pointer-events: auto;
+    }
+}
+
+/* Mobile/Tablet: Botón siempre visible */
+@media (max-width: 1023px) {
+    .back-button {
+        opacity: 1;
+        pointer-events: auto;
+    }
 }
 
 /* Transición de entrada de la página - Header fijo */
