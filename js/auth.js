@@ -3,19 +3,19 @@ const AUTH_KEY = 'beachclub_auth';
 const CORRECT_PASSWORD = 'beachclub2026';
 
 function checkAuth() {
-    const isAuthenticated = localStorage.getItem(AUTH_KEY);
+  const isAuthenticated = localStorage.getItem(AUTH_KEY);
 
-    if (isAuthenticated === 'true') {
-        return true;
-    }
+  if (isAuthenticated === 'true') {
+    return true;
+  }
 
-    showLoginModal();
-    return false;
+  showLoginModal();
+  return false;
 }
 
 function showLoginModal() {
-    // Crear el modal HTML
-    const modalHTML = `
+  // Crear el modal HTML
+  const modalHTML = `
     <div id="auth-modal" class="auth-modal">
       <div class="auth-modal-content">
         <div class="auth-header">
@@ -35,8 +35,8 @@ function showLoginModal() {
     </div>
   `;
 
-    // Crear el CSS para el modal
-    const styleHTML = `
+  // Crear el CSS para el modal
+  const styleHTML = `
     <style>
       .auth-modal {
         position: fixed;
@@ -191,60 +191,66 @@ function showLoginModal() {
     </style>
   `;
 
-    // Agregar el estilo y el modal al documento
-    document.head.insertAdjacentHTML('beforeend', styleHTML);
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
+  // Agregar el estilo y el modal al documento
+  document.head.insertAdjacentHTML('beforeend', styleHTML);
+  document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-    // Focus en el input
-    setTimeout(() => {
-        document.getElementById('auth-password').focus();
-    }, 300);
+  // Focus en el input
+  setTimeout(() => {
+    document.getElementById('auth-password').focus();
+  }, 300);
 
-    // Permitir Enter para enviar
-    document.getElementById('auth-password').addEventListener('keypress', function (e) {
-        if (e.key === 'Enter') {
-            validatePassword();
-        }
-    });
+  // Permitir Enter para enviar
+  document.getElementById('auth-password').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      validatePassword();
+    }
+  });
 }
 
 function validatePassword() {
-    const password = document.getElementById('auth-password').value;
-    const errorDiv = document.getElementById('auth-error');
+  const password = document.getElementById('auth-password').value;
+  const errorDiv = document.getElementById('auth-error');
 
-    if (password === CORRECT_PASSWORD) {
-        localStorage.setItem(AUTH_KEY, 'true');
-        document.getElementById('auth-modal').style.animation = 'fadeOut 0.3s ease';
-        setTimeout(() => {
-            document.getElementById('auth-modal').remove();
-            document.body.style.display = '';
-            // Redirigir a zona privada si estamos en login.html o similar
-            if (window.location.pathname.includes('login.html')) {
-                window.location.href = 'zona-privada.html';
-            }
-        }, 300);
-    } else {
-        errorDiv.textContent = '❌ Contraseña incorrecta';
-        errorDiv.classList.add('show');
-        document.getElementById('auth-password').value = '';
-        document.getElementById('auth-password').focus();
+  if (password === CORRECT_PASSWORD) {
+    localStorage.setItem(AUTH_KEY, 'true');
+    document.getElementById('auth-modal').style.animation = 'fadeOut 0.3s ease';
+    setTimeout(() => {
+      document.getElementById('auth-modal').remove();
+      document.body.style.display = '';
 
-        setTimeout(() => {
-            errorDiv.classList.remove('show');
-        }, 3000);
-    }
+      // Actualizar el botón de autenticación en el header
+      if (typeof updateAuthButton === 'function') {
+        updateAuthButton();
+      }
+
+      // Redirigir a zona privada si estamos en login.html o similar
+      if (window.location.pathname.includes('login.html')) {
+        window.location.href = 'zona-privada.html';
+      }
+    }, 300);
+  } else {
+    errorDiv.textContent = '❌ Contraseña incorrecta';
+    errorDiv.classList.add('show');
+    document.getElementById('auth-password').value = '';
+    document.getElementById('auth-password').focus();
+
+    setTimeout(() => {
+      errorDiv.classList.remove('show');
+    }, 3000);
+  }
 }
 
 function cancelLogin() {
-    window.location.href = 'index.html';
+  window.location.href = 'index.html';
 }
 
 function logout() {
-    localStorage.removeItem(AUTH_KEY);
+  localStorage.removeItem(AUTH_KEY);
 
-    // Mostrar notificación visual
-    const notification = document.createElement('div');
-    notification.style.cssText = `
+  // Mostrar notificación visual
+  const notification = document.createElement('div');
+  notification.style.cssText = `
     position: fixed;
     bottom: 20px;
     left: 50%;
@@ -258,12 +264,12 @@ function logout() {
     font-weight: 600;
     animation: slideInUp 0.3s ease;
   `;
-    notification.textContent = '🔓 Sesión cerrada correctamente';
-    document.body.appendChild(notification);
+  notification.textContent = '🔓 Sesión cerrada correctamente';
+  document.body.appendChild(notification);
 
-    setTimeout(() => {
-        window.location.href = 'index.html';
-    }, 1000);
+  setTimeout(() => {
+    window.location.href = 'index.html';
+  }, 1000);
 }
 
 // CSS adicional para animaciones
@@ -282,18 +288,18 @@ document.head.appendChild(fadeOutStyle);
 
 // Verificar autenticación inmediatamente
 (function () {
-    const isAuthenticated = localStorage.getItem(AUTH_KEY);
+  const isAuthenticated = localStorage.getItem(AUTH_KEY);
 
-    if (isAuthenticated === 'true') {
-        // Usuario ya autenticado, mostrar contenido
-        window.addEventListener('DOMContentLoaded', function () {
-            document.body.style.display = '';
-        });
-    } else {
-        // Usuario no autenticado, mostrar modal
-        window.addEventListener('DOMContentLoaded', function () {
-            document.body.style.display = '';
-            showLoginModal();
-        });
-    }
+  if (isAuthenticated === 'true') {
+    // Usuario ya autenticado, mostrar contenido
+    window.addEventListener('DOMContentLoaded', function () {
+      document.body.style.display = '';
+    });
+  } else {
+    // Usuario no autenticado, mostrar modal
+    window.addEventListener('DOMContentLoaded', function () {
+      document.body.style.display = '';
+      showLoginModal();
+    });
+  }
 })();

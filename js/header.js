@@ -99,6 +99,9 @@
         };
     }
 
+    // Exponer updateAuthButton globalmente para que pueda ser llamada desde auth.js
+    window.updateAuthButton = updateAuthButton;
+
     function setupHamburgerMenu() {
         const hamburger = document.getElementById('hamburger-menu');
         const navMenu = document.getElementById('nav-menu');
