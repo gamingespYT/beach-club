@@ -163,6 +163,16 @@ function showSearchInterface() {
       </div>
     </div>
     <style>
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
       body {
         margin: 0;
         padding: 0;
@@ -177,6 +187,7 @@ function showSearchInterface() {
         width: 100%;
         max-width: 600px;
         padding: 20px;
+        animation: fadeInUp 0.8s ease-out forwards;
       }
       .search-box {
         background: white;
