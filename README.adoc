@@ -240,7 +240,7 @@ const products = [
 
 == 📄 Licencia
 
-Este proyecto ha sido desarrollado para la dueña del negocio Beach Club en el servidor de rolplay de GuaguaRP [https://guaguarp.com].
+Este proyecto ha sido desarrollado para la dueña del negocio Beach Club en el servidor de rolplay de https://guaguarp.com[GuaguaRP].
 
 ---
 
