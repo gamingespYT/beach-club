@@ -330,27 +330,53 @@
   box-shadow: 0 4px 12px rgba(127, 140, 141, 0.4);
 }
 
-@media (max-width: 480px) {
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+  .layout {
+    gap: 15px;
+  }
+
+  .column {
+    max-width: 400px;
+  }
+
+  .column h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Mobile breakpoint */
+@media (max-width: 768px) {
   .layout {
     flex-direction: column;
+    padding: 0 15px;
   }
 
   .column {
     min-width: 100%;
     max-width: none;
-    padding: 14px;
+    padding: 16px;
   }
 
-  header img {
-    max-height: 56px;
+  .column h2 {
+    font-size: 1.4rem;
   }
 
-  h1 {
-    font-size: 1.2rem;
+  .shopping-main h1 {
+    font-size: 2rem;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+
+  .buttons button {
+    width: 100%;
   }
 
   .dialog {
     padding: 20px;
+    width: 95%;
   }
 
   .dialog-buttons {

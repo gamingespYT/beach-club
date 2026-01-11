@@ -394,27 +394,50 @@ h2 {
   box-shadow: 0 2px 8px rgba(155, 89, 182, 0.3);
 }
 
+/* Tablet breakpoint */
+@media (max-width: 1024px) {
+  .layout {
+    gap: 15px;
+  }
+
+  .calculator-container h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Mobile breakpoint */
 @media (max-width: 768px) {
   .layout {
     flex-direction: column;
   }
-}
-
-@media (max-width: 480px) {
 
   .products-container,
   .cart-container {
     min-width: 100%;
-    width: 100%;
-    padding: 14px;
+    max-width: none;
+    padding: 16px;
   }
 
-  h1 {
-    font-size: 1.2rem;
+  .calculator-container h1 {
+    font-size: 1.8rem;
+    margin: 20px 0;
+  }
+
+  .buttons {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .buttons button {
+    width: 100%;
   }
 
   .qty-input {
-    width: 48px;
+    width: 50px;
+  }
+
+  .dialog-content {
+    padding: 20px;
   }
 }
 
