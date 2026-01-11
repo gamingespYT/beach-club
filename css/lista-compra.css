@@ -26,24 +26,30 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
+  align-items: flex-start;
 }
 
 .column {
-  background: #161b22;
-  border-radius: 10px;
+  background: #fff;
+  border-radius: 15px;
   padding: 20px;
   flex: 1;
   min-width: 0;
   /* allow columns to shrink on narrow viewports */
   max-width: 450px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .column h2 {
-  border-bottom: 1px solid #30363d;
+  border-bottom: 3px solid #2c3e50;
   padding-bottom: 10px;
-  color: #58a6ff;
+  color: #2c3e50;
   text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 15px;
 }
 
 .item {
@@ -52,7 +58,8 @@
   align-items: center;
   margin: 10px 0;
   padding-bottom: 10px;
-  border-bottom: 1px solid #30363d;
+  border-bottom: 1px solid #ddd;
+  color: #2c3e50;
 }
 
 .item span {
@@ -69,55 +76,60 @@
   min-width: 30px;
   text-align: center;
   font-weight: bold;
-  color: #ffcc66;
+  color: #FF7F50;
   font-size: 1.1rem;
 }
 
 .item button {
-  background: #238636;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 6px 12px;
   cursor: pointer;
   font-size: 1rem;
-  transition: 0.2s;
+  transition: all 0.3s;
+  box-shadow: 0 2px 6px rgba(46, 204, 113, 0.3);
 }
 
 .item button.add10-btn {
-  background: #1f6feb;
+  background: linear-gradient(135deg, #87CEEB, #4A90E2);
   padding: 6px 10px;
   font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(135, 206, 235, 0.3);
 }
 
 .item button.add10-btn:hover {
-  background: #388bfd;
+  background: linear-gradient(135deg, #4A90E2, #87CEEB);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(135, 206, 235, 0.4);
 }
 
 .item button:hover {
-  background: #2ea043;
-  transform: scale(1.1);
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(46, 204, 113, 0.4);
 }
 
 .cart {
-  background: #0d1117;
+  background: #f4f6f7;
   padding: 15px;
-  border-radius: 8px;
+  border-radius: 10px;
   min-height: 200px;
   font-size: 0.95rem;
   white-space: pre-line;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  color: #2c3e50;
 }
 
 .aisle-header {
   font-weight: bold;
-  color: #58a6ff;
+  color: #FF7F50;
   margin-top: 15px;
   margin-bottom: 8px;
   padding: 8px;
-  background: #161b22;
+  background: #fff;
   border-radius: 5px;
-  border-left: 3px solid #58a6ff;
+  border-left: 3px solid #FF7F50;
   transition: background 0.2s, transform 0.2s;
 }
 
@@ -126,7 +138,7 @@
 }
 
 .aisle-header:hover {
-  background: #1c2128;
+  background: #fef5f1;
   transform: translateX(2px);
 }
 
@@ -135,10 +147,11 @@
   margin: 3px 0;
   border-radius: 4px;
   transition: background 0.2s;
+  color: #2c3e50;
 }
 
 .cart-item:hover {
-  background: #161b22;
+  background: #fff;
 }
 
 .total {
@@ -146,7 +159,7 @@
   font-size: 1.2rem;
   text-align: right;
   margin-top: 10px;
-  color: #ffcc66;
+  color: #2c3e50;
 }
 
 .buttons {
@@ -158,20 +171,46 @@
 
 .buttons button {
   flex: 1;
-  background: #e67e22;
   border: none;
   padding: 10px;
   border-radius: 8px;
   color: white;
   cursor: pointer;
   font-size: 1rem;
-  font-weight: bold;
-  transition: 0.3s;
+  font-weight: 600;
+  transition: all 0.3s;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
-.buttons button:hover {
-  background: #d35400;
-  transform: scale(1.05);
+.buttons button:first-child {
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #1a1a1a;
+}
+
+.buttons button:first-child:hover {
+  background: linear-gradient(135deg, #FFA500, #FFD700);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+}
+
+.buttons button:nth-child(2) {
+  background: linear-gradient(135deg, #87CEEB, #4A90E2);
+}
+
+.buttons button:nth-child(2):hover {
+  background: linear-gradient(135deg, #4A90E2, #87CEEB);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(135, 206, 235, 0.4);
+}
+
+.buttons button:last-child {
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.buttons button:last-child:hover {
+  background: linear-gradient(135deg, #c0392b, #a93226);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
 }
 
 .notification {
@@ -212,34 +251,35 @@
 }
 
 .dialog {
-  background: #161b22;
+  background: #fff;
   border-radius: 12px;
   padding: 30px;
   max-width: 500px;
   width: 90%;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  border: 1px solid #30363d;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid #ddd;
 }
 
 .dialog h2 {
-  color: #58a6ff;
+  color: #2c3e50;
   margin-top: 0;
   margin-bottom: 15px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .dialog p {
-  color: #c9d1d9;
+  color: #555;
   margin-bottom: 15px;
 }
 
 .dialog textarea {
   width: 100%;
   min-height: 120px;
-  background: #0d1117;
-  border: 1px solid #30363d;
+  background: #f4f6f7;
+  border: 2px solid #ddd;
   border-radius: 8px;
   padding: 12px;
-  color: #fff;
+  color: #2c3e50;
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
   resize: vertical;
@@ -249,7 +289,7 @@
 
 .dialog textarea:focus {
   outline: none;
-  border-color: #58a6ff;
+  border-color: #f8b500;
 }
 
 .dialog-buttons {
@@ -269,23 +309,25 @@
 }
 
 .primary-btn {
-  background: #238636;
-  color: white;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #1a1a1a;
 }
 
 .primary-btn:hover {
-  background: #2ea043;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #FFA500, #FFD700);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
 }
 
 .secondary-btn {
-  background: #6e7681;
+  background: linear-gradient(135deg, #95a5a6, #7f8c8d);
   color: white;
 }
 
 .secondary-btn:hover {
-  background: #8b949e;
-  transform: scale(1.05);
+  background: linear-gradient(135deg, #7f8c8d, #6c7a7b);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(127, 140, 141, 0.4);
 }
 
 @media (max-width: 480px) {
