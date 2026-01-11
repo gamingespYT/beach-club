@@ -315,7 +315,7 @@ html,
 
 /* Back-to-home floating button */
 .back-home {
-  position: fixed;
+  position: absolute;
   top: 12px;
   left: 12px;
   z-index: 1000;
