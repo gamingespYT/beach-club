@@ -1,0 +1,247 @@
+= Beach Club - Sistema de Gestión Integral
+Gaming España <https://www.youtube.com/@Gamingesp_YT>
+:toc:
+:toc-title: Tabla de Contenidos
+:icons: font
+:source-highlighter: highlight.js
+
+== 🏖️ Descripción
+
+**Beach Club** es una aplicación web completa diseñada para gestionar operaciones de un negocio de productos y servicios. Incluye sistema de autenticación, calculadora de productos, gestión de listas de compra, generación de facturas y búsqueda de las mismas.
+
+Desarrollado por **Gaming España** - https://www.youtube.com/@Gamingesp_YT
+
+== ✨ Características Principales
+
+=== 🎨 Diseño Moderno
+* Tema visual beach/tropical con gradientes vibrantes (coral, dorado, azul cielo)
+* Interfaz responsive para móvil, tablet y desktop
+* Animaciones suaves y efectos hover interactivos
+* Tipografía: Montserrat (títulos) y Pacifico (headers especiales)
+
+=== 🔐 Sistema de Autenticación
+* Zona privada protegida por contraseña
+* Modal de login con diseño tropical
+* Sesión persistente mediante localStorage
+* Botón de logout integrado en el header
+
+=== 📊 Módulos Funcionales
+
+==== 1. Calculadora de Productos
+* Gestión de inventario de productos con precios
+* Sistema de carrito con cantidades ajustables
+* Descuentos:
+** Descuento de empleados (automático)
+** Descuentos personalizados con motivo opcional
+* Generación de facturas con datos del cliente
+* Copia rápida del carrito al portapapeles
+* Persistencia de datos en localStorage
+
+==== 2. Lista de Compras
+* Organización por ingredientes y packs de productos
+* Sistema de pasillo automático para organización
+* Cálculo de total en tiempo real
+* Generación de códigos compartibles
+* Carga de listas mediante códigos
+* Interfaz con tema claro y beach-themed
+
+==== 3. Sistema de Facturas
+* Generación de facturas únicas con códigos
+* Búsqueda de facturas por código
+* Almacenamiento local de facturas
+* Vista detallada con información del cliente
+* Descarga/impresión de facturas
+* Historial de facturas guardadas
+
+== 📁 Estructura del Proyecto
+
+[source]
+----
+beach-club/
+├── index.html              # Página principal
+├── menu.html              # Menú de productos/servicios
+├── actividades.html       # Página de actividades
+├── zona-privada.html      # Panel de control privado
+├── calculadora.html       # Calculadora de productos
+├── lista-compra.html      # Gestión de listas
+├── facturas.html          # Sistema de facturas
+├── css/
+│   ├── main.css          # Estilos globales
+│   ├── calculadora.css   # Estilos de calculadora
+│   ├── lista-compra.css  # Estilos de lista de compras
+│   ├── facturas.css      # Estilos de facturas
+│   └── zona-privada.css  # Estilos zona privada
+├── js/
+│   ├── main.js           # JavaScript general
+│   ├── header.js         # Header dinámico
+│   ├── auth.js           # Sistema de autenticación
+│   ├── calculadora.js    # Lógica de calculadora
+│   ├── lista-compra.js   # Lógica de lista de compras
+│   ├── facturas.js       # Gestión de facturas
+│   └── custom-alerts.js  # Modales personalizados
+└── assets/
+    └── logo.png          # Logo del negocio
+----
+
+== 🚀 Funcionalidades Técnicas
+
+=== Tecnologías Utilizadas
+* **HTML5**: Estructura semántica
+* **CSS3**: Estilos modernos con gradientes y animaciones
+* **JavaScript (Vanilla)**: Lógica de negocio sin frameworks
+* **LocalStorage**: Persistencia de datos del lado del cliente
+
+=== Características Responsive
+
+==== Desktop (> 1024px)
+* Layout multi-columna optimizado
+* Espaciado amplio entre elementos
+* Tipografía grande y legible
+
+==== Tablet (768px - 1024px)
+* Ajuste de columnas y espaciado
+* Tamaños de fuente intermedios
+* Gap reducido entre elementos
+
+==== Móvil (< 768px)
+* Layout de columna única
+* Botones full-width para mejor UX táctil
+* Navegación con botón flotante de retorno
+* Tipografía optimizada para pantallas pequeñas
+
+== 🎯 Páginas Principales
+
+=== 1. Inicio (index.html)
+Página de bienvenida con:
+
+* Hero section con degradado tropical
+* Botones de navegación destacados
+* Animaciones de entrada (fadeInScale)
+
+=== 2. Zona Privada (zona-privada.html)
+Panel de control protegido:
+
+* Acceso mediante autenticación
+* Cards animadas para:
+** 🧮 Calculadora
+** 🛒 Lista de Compras
+* Botón de cierre de sesión
+* Diseño con glassmorphism
+
+=== 3. Calculadora (calculadora.html)
+Gestión de productos y ventas:
+
+* **Sección Productos**: Lista de productos con precio
+* **Sección Carrito**: Resumen de compra
+* **Funciones**:
+** Añadir productos con cantidad
+** Aplicar descuentos (empleados/personalizado)
+** Generar factura con datos de cliente
+** Copiar resumen al portapapeles
+** Reset del carrito
+
+=== 4. Lista de Compras (lista-compra.html)
+Organización de compras:
+
+* **3 Columnas**:
+** 🧺 Ingredientes
+** 🍹 Packs de Productos
+** 🧾 Lista de Compra
+* **Características**:
+** Añadir cantidades personalizadas
+** Organización automática por pasillo
+** Cálculo de total
+** Compartir mediante código
+** Cargar listas previas
+
+=== 5. Facturas (facturas.html)
+Sistema de facturas:
+
+* **Búsqueda**: Por código de factura
+* **Visualización**: Detalles completos de la compra
+* **Historial**: Facturas guardadas localmente
+* **Acciones**: Ver, eliminar facturas
+
+== 🎨 Paleta de Colores
+
+[cols="1,2,1"]
+|===
+|Color |Uso |Código
+
+|Dorado
+|Botones principales, highlights
+|#FFD700 → #FFA500
+
+|Coral
+|Elementos destacados, acentos
+|#FF7F50
+
+|Azul Cielo
+|Botones secundarios
+|#87CEEB → #4A90E2
+
+|Verde
+|Botones de acción, éxito
+|#2ecc71 → #27ae60
+
+|Rojo
+|Botones de eliminación, peligro
+|#e74c3c → #c0392b
+
+|Morado
+|Descuentos personalizados
+|#9b59b6 → #8e44ad
+|===
+
+== 📱 Responsive Design
+
+La aplicación está completamente optimizada para diferentes dispositivos:
+
+* ✅ **Desktop**: Layout completo con múltiples columnas
+* ✅ **Tablet**: Ajustes de espaciado y tamaños
+* ✅ **Móvil**: Diseño de columna única, botones táctiles
+
+=== Breakpoints
+* **Tablet**: `max-width: 1024px`
+* **Móvil**: `max-width: 768px`
+* **Móvil pequeño**: `max-width: 480px`
+
+== 🔧 Instalación y Uso
+
+=== Requisitos
+* Navegador web moderno (Chrome, Firefox, Safari, Edge)
+* No requiere servidor backend
+* Funciona completamente en el cliente
+
+=== Configuración
+1. Clonar o descargar el repositorio
+2. Abrir `index.html` en un navegador
+3. La contraseña de acceso a la zona privada debe configurarse en `js/auth.js`
+
+=== Configuración de Productos
+Los productos se definen en `js/calculadora.js` y `js/lista-compra.js`:
+
+[source,javascript]
+----
+const products = [
+  { name: "Producto 1", price: 10 },
+  { name: "Producto 2", price: 20 }
+];
+----
+
+== 🎬 Créditos
+
+**Desarrollado por Gaming España**
+
+* 🎥 Canal de YouTube: https://www.youtube.com/@Gamingesp_YT
+* 📱 GitHub: https://github.com/gamingespYT
+* 🎨 Diseño: Beach/Tropical theme
+* 💻 Stack: HTML5, CSS3, JavaScript
+
+== 📄 Licencia
+
+Este proyecto ha sido desarrollado para la dueña del negocio Beach Club en el servidor de rolplay de GuaguaRP [https://guaguarp.com].
+
+---
+
+_Última actualización: Enero 2026_
