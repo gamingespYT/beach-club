@@ -31,6 +31,7 @@
   width: 100%;
   max-width: 1200px;
   gap: 20px;
+  align-items: flex-start;
 }
 
 .products-container,
@@ -50,6 +51,15 @@ h2 {
   color: #2c3e50;
   border-bottom: 2px solid #eee;
   padding-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.cart-container h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #2c3e50;
 }
 
 /* Encabezado de Productos con input global a la derecha */
@@ -108,19 +118,21 @@ h2 {
 }
 
 .product button {
-  background: #2ecc71;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
   color: white;
   border: none;
   padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s;
   justify-self: end;
-  /* alinear botón en su columna */
+  box-shadow: 0 2px 6px rgba(46, 204, 113, 0.3);
 }
 
 .product button:hover {
-  background: #27ae60;
+  background: linear-gradient(135deg, #27ae60, #2ecc71);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(46, 204, 113, 0.4);
 }
 
 .list {
@@ -203,24 +215,27 @@ h2 {
 .copy-btn,
 .reset-btn {
   flex: 1;
-  background: #e67e22;
   color: white;
   border: none;
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
 }
 
 .employee-btn {
   flex: 1;
-  background: #3498db;
+  background: linear-gradient(135deg, #87CEEB, #4A90E2);
   color: white;
   border: none;
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.12s;
+  transition: all 0.3s;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(135, 206, 235, 0.3);
 }
 
 .employee-btn.active {
@@ -231,17 +246,21 @@ h2 {
 
 .custom-discount-btn {
   flex: 1;
-  background: #9b59b6;
+  background: linear-gradient(135deg, #9b59b6, #8e44ad);
   color: white;
   border: none;
   padding: 10px;
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.12s;
+  transition: all 0.3s;
+  font-weight: 600;
+  box-shadow: 0 3px 8px rgba(155, 89, 182, 0.3);
 }
 
 .custom-discount-btn:hover {
-  background: #8e44ad;
+  background: linear-gradient(135deg, #8e44ad, #9b59b6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(155, 89, 182, 0.4);
 }
 
 .custom-discount-btn.active {
@@ -250,16 +269,24 @@ h2 {
   transform: translateY(-1px);
 }
 
+.copy-btn {
+  background: linear-gradient(135deg, #FF7F50, #FFD700);
+}
+
 .copy-btn:hover {
-  background: #d35400;
+  background: linear-gradient(135deg, #ff6a39, #ffcc00);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 127, 80, 0.4);
 }
 
 .reset-btn {
-  background: #e74c3c;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
 }
 
 .reset-btn:hover {
-  background: #c0392b;
+  background: linear-gradient(135deg, #c0392b, #a93226);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
 }
 
 .notification {
@@ -524,8 +551,8 @@ h2 {
 
 .invoice-btn {
   width: 100%;
-  background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-  color: white;
+  background: linear-gradient(135deg, #FFD700, #FFA500);
+  color: #1a1a1a;
   padding: 12px 20px;
   border: none;
   border-radius: 8px;
@@ -534,9 +561,11 @@ h2 {
   font-weight: bold;
   transition: all 0.3s;
   margin-top: 10px;
+  box-shadow: 0 3px 8px rgba(255, 215, 0, 0.3);
 }
 
 .invoice-btn:hover {
+  background: linear-gradient(135deg, #FFA500, #FFD700);
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4);
+  box-shadow: 0 5px 15px rgba(255, 215, 0, 0.5);
 }
