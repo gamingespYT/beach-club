@@ -53,10 +53,10 @@ const packCounts = {};
 
 // Cargar datos del localStorage
 function loadFromStorage() {
-  const savedCart = localStorage.getItem('tropicalCart');
-  const savedStriked = localStorage.getItem('tropicalStriked');
-  const savedPackCounts = localStorage.getItem('tropicalPackCounts');
-  
+  const savedCart = localStorage.getItem('beachClubCart');
+  const savedStriked = localStorage.getItem('beachClubStriked');
+  const savedPackCounts = localStorage.getItem('beachClubPackCounts');
+
   if (savedCart) {
     Object.assign(cart, JSON.parse(savedCart));
   }
@@ -70,9 +70,9 @@ function loadFromStorage() {
 
 // Guardar datos en localStorage
 function saveToStorage() {
-  localStorage.setItem('tropicalCart', JSON.stringify(cart));
-  localStorage.setItem('tropicalStriked', JSON.stringify(striked));
-  localStorage.setItem('tropicalPackCounts', JSON.stringify(packCounts));
+  localStorage.setItem('beachClubCart', JSON.stringify(cart));
+  localStorage.setItem('beachClubStriked', JSON.stringify(striked));
+  localStorage.setItem('beachClubPackCounts', JSON.stringify(packCounts));
 }
 
 function renderLists() {
@@ -82,31 +82,31 @@ function renderLists() {
   ingredients.forEach((item) => {
     const div = document.createElement("div");
     div.className = "item";
-    
+
     const nameSpan = document.createElement("span");
     nameSpan.textContent = `${item.name} - ${item.price}€`;
-    
+
     const buttonsDiv = document.createElement("div");
     buttonsDiv.className = "item-controls";
-    
+
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "➖";
-    removeBtn.onclick = function() { removeItem(item.name); updateIngredientDisplay(item.name); };
-    
+    removeBtn.onclick = function () { removeItem(item.name); updateIngredientDisplay(item.name); };
+
     const quantitySpan = document.createElement("span");
     quantitySpan.className = "quantity";
     quantitySpan.id = `qty-${item.name}`;
     quantitySpan.textContent = "0";
-    
+
     const addBtn = document.createElement("button");
     addBtn.textContent = "➕";
-    addBtn.onclick = function() { addItem(item.name, item.price); updateIngredientDisplay(item.name); };
-    
+    addBtn.onclick = function () { addItem(item.name, item.price); updateIngredientDisplay(item.name); };
+
     const add10Btn = document.createElement("button");
     add10Btn.textContent = "➕10";
     add10Btn.className = "add10-btn";
-    add10Btn.onclick = function() { addItems(item.name, item.price, 10); updateIngredientDisplay(item.name); };
-    
+    add10Btn.onclick = function () { addItems(item.name, item.price, 10); updateIngredientDisplay(item.name); };
+
     buttonsDiv.appendChild(removeBtn);
     buttonsDiv.appendChild(quantitySpan);
     buttonsDiv.appendChild(addBtn);
@@ -119,31 +119,31 @@ function renderLists() {
   packs.forEach((pack) => {
     const div = document.createElement("div");
     div.className = "item";
-    
+
     const nameSpan = document.createElement("span");
     nameSpan.textContent = pack.name;
-    
+
     const buttonsDiv = document.createElement("div");
     buttonsDiv.className = "item-controls";
-    
+
     const removeBtn = document.createElement("button");
     removeBtn.textContent = "➖";
-    removeBtn.onclick = function() { removePack(pack.name); updatePackDisplay(pack.name); };
-    
+    removeBtn.onclick = function () { removePack(pack.name); updatePackDisplay(pack.name); };
+
     const quantitySpan = document.createElement("span");
     quantitySpan.className = "quantity";
     quantitySpan.id = `qty-pack-${pack.name}`;
     quantitySpan.textContent = "0";
-    
+
     const addBtn = document.createElement("button");
     addBtn.textContent = "➕";
-    addBtn.onclick = function() { addPack(pack.name); updatePackDisplay(pack.name); };
-    
+    addBtn.onclick = function () { addPack(pack.name); updatePackDisplay(pack.name); };
+
     const add10Btn = document.createElement("button");
     add10Btn.textContent = "➕10";
     add10Btn.className = "add10-btn";
-    add10Btn.onclick = function() { addPacks(pack.name, 10); updatePackDisplay(pack.name); };
-    
+    add10Btn.onclick = function () { addPacks(pack.name, 10); updatePackDisplay(pack.name); };
+
     buttonsDiv.appendChild(removeBtn);
     buttonsDiv.appendChild(quantitySpan);
     buttonsDiv.appendChild(addBtn);
@@ -187,10 +187,10 @@ function updateIngredientDisplay(name) {
 function addPack(packName) {
   const pack = packs.find(p => p.name === packName);
   if (!pack) return;
-  
+
   if (!packCounts[packName]) packCounts[packName] = 0;
   packCounts[packName]++;
-  
+
   pack.ingredients.forEach(ing => {
     const item = ingredients.find(i => i.name === ing);
     if (item) {
@@ -209,12 +209,12 @@ function addPacks(packName, quantity) {
 function removePack(packName) {
   const pack = packs.find(p => p.name === packName);
   if (!pack) return;
-  
+
   if (packCounts[packName]) {
     packCounts[packName]--;
     if (packCounts[packName] <= 0) delete packCounts[packName];
   }
-  
+
   pack.ingredients.forEach(ing => {
     removeItem(ing);
     updateIngredientDisplay(ing);
@@ -242,16 +242,16 @@ function updateCart() {
 
   // Agrupar items por pasillo
   const itemsByAisle = {};
-  
+
   for (let name in cart) {
     const item = cart[name];
     const ingredient = ingredients.find(i => i.name === name);
     const aisle = ingredient ? ingredient.aisle : "Sin pasillo";
-    
+
     if (!itemsByAisle[aisle]) {
       itemsByAisle[aisle] = [];
     }
-    
+
     itemsByAisle[aisle].push({ name, ...item });
     total += item.price * item.qty;
   }
@@ -260,25 +260,25 @@ function updateCart() {
   aisleOrder.forEach(aisle => {
     if (itemsByAisle[aisle] && itemsByAisle[aisle].length > 0) {
       const aisleItems = itemsByAisle[aisle];
-      
+
       // Verificar si todos los productos del pasillo están tachados
       const allStriked = aisleItems.every(item => striked[item.name]);
-      
+
       // Encabezado del pasillo
       const aisleHeader = document.createElement("div");
       aisleHeader.className = "aisle-header";
       aisleHeader.textContent = `📍 Pasillo ${aisle} - ${aisleNames[aisle]}`;
       aisleHeader.style.cursor = "pointer";
       aisleHeader.style.userSelect = "none";
-      
+
       // Si todos los productos están tachados, tachar el pasillo
       if (allStriked) {
         aisleHeader.style.textDecoration = "line-through";
         aisleHeader.style.opacity = "0.6";
       }
-      
+
       // Click en el pasillo tача/destача todos sus productos
-      aisleHeader.onclick = function() {
+      aisleHeader.onclick = function () {
         const shouldStrike = !allStriked;
         for (const item of aisleItems) {
           striked[item.name] = shouldStrike;
@@ -286,9 +286,9 @@ function updateCart() {
         saveToStorage();
         updateCart();
       };
-      
+
       cartEl.appendChild(aisleHeader);
-      
+
       // Items del pasillo
       for (const item of itemsByAisle[aisle]) {
         const line = document.createElement("div");
@@ -296,18 +296,18 @@ function updateCart() {
         line.textContent = `${item.qty}x ${item.name} = ${item.price * item.qty}€`;
         line.style.cursor = "pointer";
         line.style.userSelect = "none";
-        
+
         if (striked[item.name]) {
           line.style.textDecoration = "line-through";
           line.style.opacity = "0.5";
         }
-        
-        line.onclick = function() {
+
+        line.onclick = function () {
           striked[item.name] = !striked[item.name];
           saveToStorage();
           updateCart();
         };
-        
+
         cartEl.appendChild(line);
       }
     }
@@ -327,11 +327,11 @@ function generateCode() {
     cart: cart,
     packCounts: packCounts
   };
-  
+
   // Convertir a JSON y codificar en Base64
   const jsonString = JSON.stringify(data);
   const code = btoa(encodeURIComponent(jsonString));
-  
+
   // Copiar al portapapeles
   navigator.clipboard.writeText(code);
   showNotification("✅ Código copiado al portapapeles");
@@ -350,33 +350,33 @@ function closeLoadDialog() {
 
 function loadFromCode() {
   const codeInput = document.getElementById("codeInput").value.trim();
-  
+
   if (!codeInput) {
     showNotification("⚠️ Por favor, pega un código");
     return;
   }
-  
+
   try {
     // Decodificar desde Base64 y parsear JSON
     const jsonString = decodeURIComponent(atob(codeInput));
     const data = JSON.parse(jsonString);
-    
+
     // Validar que tenga la estructura correcta
     if (!data.cart || typeof data.cart !== 'object') {
       throw new Error("Formato de código inválido");
     }
-    
+
     // Limpiar carrito actual
     for (let key in cart) delete cart[key];
     for (let key in striked) delete striked[key];
     for (let key in packCounts) delete packCounts[key];
-    
+
     // Cargar nuevos datos
     Object.assign(cart, data.cart);
     if (data.packCounts) {
       Object.assign(packCounts, data.packCounts);
     }
-    
+
     // Actualizar UI
     saveToStorage();
     updateCart();
@@ -386,7 +386,7 @@ function loadFromCode() {
     for (const pack of packs) {
       updatePackDisplay(pack.name);
     }
-    
+
     closeLoadDialog();
     showNotification("✅ Lista cargada correctamente");
   } catch (error) {
@@ -399,12 +399,12 @@ function resetCart() {
   for (let key in cart) delete cart[key];
   for (let key in striked) delete striked[key];
   for (let key in packCounts) delete packCounts[key];
-  
+
   // Limpiar localStorage
-  localStorage.removeItem('tropicalCart');
-  localStorage.removeItem('tropicalStriked');
-  localStorage.removeItem('tropicalPackCounts');
-  
+  localStorage.removeItem('beachClubCart');
+  localStorage.removeItem('beachClubStriked');
+  localStorage.removeItem('beachClubPackCounts');
+
   // Actualizar todas las cantidades a 0
   for (const item of ingredients) {
     updateIngredientDisplay(item.name);
@@ -412,7 +412,7 @@ function resetCart() {
   for (const pack of packs) {
     updatePackDisplay(pack.name);
   }
-  
+
   updateCart();
   showNotification("🔄 Lista reseteada");
 }
