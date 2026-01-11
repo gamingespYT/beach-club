@@ -32,7 +32,7 @@ function renderProducts() {
     const div = document.createElement("div");
     div.className = "product";
     div.innerHTML = `
-      <span>${p.name}${p.car} - ${p.price}€</span>
+      <span>${p.name} - ${p.price}€</span>
       <input type="number" id="qty-${i}" value="1" min="1" class="qty-input">
       <button onclick="addToCart(${i})">Añadir</button>
     `;
