@@ -9,7 +9,7 @@ Gaming España <https://www.youtube.com/@Gamingesp_YT>
 
 **Beach Club** es una aplicación web completa diseñada para gestionar operaciones de un negocio de productos y servicios. Incluye sistema de autenticación, calculadora de productos, gestión de listas de compra, generación de facturas y búsqueda de las mismas.
 
-Desarrollado por **Gaming España** - https://www.youtube.com/@Gamingesp_YT
+Desarrollado por **Gaming España**
 
 == ✨ Características Principales
 
